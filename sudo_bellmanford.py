@@ -1,20 +1,40 @@
+graph = {'S': set(['A', 'E']),
+         'A': set(['C']),
+         'B': set(['A']),
+         'C': set(['B']),
+         'D': set(['A', 'C']),
+         'E': set(['D'])}
+edges = {('S','E') : 8,
+         ('S','A'): 10,
+         ('A','C'): 2,
+         ('B','A'): 1,
+         ('C','B'): -2,
+         ('D','A'):-4,
+         ('D','C'):-1,
+         ('E','D'): 1
+          }
+
+
 
 def BellmanFord():
-
-    for i in node:
-        if(i == source):
-            distance[i] = 0
+    distance = {}
+    for node in graph.keys():
+        if(node == 'S'):
+            distance[node] = 0
         else :
-            distance[i] = 255
+            distance[node] = 255
 
-    for i in edges:
-        for k in nodes:
-            if(distance[k] + W[k][i] < distance[i]):
-                distance[i] = distance[k] + W[k][i]
+    for node in graph.keys():
+        for edge in edges.keys():
+            #u = edgesource
+            u = edge[0]
+            #v = edgedestination
+            v = edge[1]
 
-    #cycle check
-    for j in nodes:
-        if(distance[j] + W[j][dest] < distance[dest]):
-            cycle_exist = true
+            if(distance[u] + edges[(u,v)] < distance[v]):
+                distance[v] = distance[u] + edges[(u,v)]
 
+    return distance
+
+print BellmanFord()
 
