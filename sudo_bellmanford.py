@@ -1,3 +1,8 @@
+#Let G be a weighted directed graph with possibly negative edge weights. Graph G may even contain a cycle with a negative length.
+#We are going to compute the shortest path between two vertices in G, under the constraint that a path can't visit any vertex more than once.
+#When you answer the questions (a) and (b), remember this setting and constraint.
+
+
 graph = {'S': set(['A', 'E']),
          'A': set(['S','C']),
          'B': set(['A']),
