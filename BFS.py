@@ -13,7 +13,7 @@ def BFS(graph, start):
     while(len(queue) != 0):
         node = queue.pop(0)
         if node not in visited:
-            
+
             visited.add(node)
             queue.extend(graph[node]-visited)
 
