@@ -6,10 +6,9 @@ class node :
         self.value = value
         self.position = position
 
-
 class heap :
     def __init__(self,value):
-        self.value = value
+
         self.root = node(value,1)
         self.nodeCount = 1
     def pop_node(self):
@@ -50,13 +49,14 @@ class heap :
 
 
             newNode = node(inValue,self.nodeCount,None,None,currentPosNode)
+
             if(lastdir == 0):
                 currentPosNode.left = newNode
             else : currentPosNode.right = newNode
             currentPosNode = newNode
 
         #bottom up
-        while(currentPosNode.value < currentPosNode.parent.value and self.root != currentPosNode):
+        while(self.root != currentPosNode and currentPosNode.value < currentPosNode.parent.value):
             temp = currentPosNode.value
             currentPosNode.value = currentPosNode.parent.value
             currentPosNode.parent.value = temp
@@ -64,14 +64,12 @@ class heap :
 
 def main():
     #heap array
-    arr = [3,2,4,5,0,3,7,1]
+    arr = [3,2,4,5,0,7,1]
 
     root = heap(arr[0])
     arr.pop(0)
+
     for e in arr:
         root.push_node(e)
-
-
-
-if __name__ == "__main__":
-    main()
+    print "debug"
+main()
