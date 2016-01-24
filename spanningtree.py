@@ -30,6 +30,7 @@ def kruskal(nodes, edges):
     alledges = []
     visited = []
     mst = []
+
     for n1,n2,w in edges:
         conn[n1].append((w,n1,n2))
     for n in nodes:
@@ -58,6 +59,7 @@ def findDisjoint(e, visited):
         if e in s:
             return s
     return set(e)
+
 
 #test
 nodes = list("ABCDEFG")
