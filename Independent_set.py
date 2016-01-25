@@ -10,20 +10,18 @@ class Node :
 
 
 
-def independent_set(root,e_root,i_root):
+def independent_set(root):
 
     if(root == None):
         return 0
 
-    if(root.left):
-        e_root += independent_set(root.left,e_root,i_root)
-    if(root.right):
-        e_root += independent_set(root.right,e_root,i_root)
+    e_root = independent_set(root.left) + independent_set(root.right)
 
+    i_root = 1
     if(root.left):
-        i_root += independent_set(root.left.left,e_root,i_root) + independent_set(root.left.right,e_root,i_root) + 1
+        i_root += independent_set(root.left.left) + independent_set(root.left.right)
     if(root.right):
-        i_root += independent_set(root.right.left,e_root,i_root) + independent_set(root.right.right,e_root,i_root) + 1
+        i_root += independent_set(root.right.left) + independent_set(root.right.right)
 
     return max(e_root,i_root)
 
@@ -34,7 +32,7 @@ def main():
     root.left = Node(Node())
     root.right = Node(Node(),Node())
 
-    print independent_set(root,0,0)
+    print independent_set(root)
 
 if __name__ == "__main__" :
     main()
