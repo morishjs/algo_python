@@ -8,10 +8,12 @@ graph = {'A': set(['B', 'C']),
          'F': set(['E'])}
 
 
+
 def DFS(graph, start):
     visited = set()
     stack = [start]
     path = []
+    parent = {}
     Topological=[]
 
     while len(stack) != 0 :
@@ -21,21 +23,21 @@ def DFS(graph, start):
             path.append(e)
             visited.add(e)
 
-            remain = graph[e]-visited
-            if remain == set():
-                Topological.append(e)
-                prev = path[-2]
-                for before in graph(prev)-visited:
-                    if(before == set()):
-                        Topological.append(before)
-                        prev = path[path.index(prev)-1]
-                    else : break
-
             for vertex in graph[e]:
                 if vertex not in visited:
                     stack.append(vertex)
+                    parent[vertex] = e
 
-    return Topological
+            if graph[e] - visited == set():
+                Topological.append(e)
+                prevnode = parent[e]
+                debug = graph[prevnode] - visited
+                while graph[prevnode] - visited == set():
+                    Topological.append(prevnode)
+                    if prevnode != start:
+                        prevnode = parent[prevnode]
+                    else: return Topological
+
 
 
 
